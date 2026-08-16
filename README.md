@@ -1,40 +1,13 @@
-# Northern Edge Robotics & Fabrication: MetaTrader High-Frequency Router Daemon
+# Northern Edge Robotics & Fabrication — GitHub Pages Package
 
-[![C++ Standard](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B17)
-[![Build Status](https://img.shields.io/badge/Build-Passing-success.svg)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+This folder contains the self-contained static build of the Northern Edge landing page. It includes local copies of the visual assets, so the page does not depend on the previous hosting environment.
 
-An ultra-low latency, concurrent asynchronous broker access server latency routing engine developed by **Northern Edge Robotics & Fabrication**. Engineered for high-frequency trading (HFT) and precision robotic control loops requiring sub-millisecond execution precision.
+## Publish to an existing GitHub Pages repository
 
----
+1. Open the repository that currently powers your GitHub Pages site.
+2. Back up the current contents if you want to preserve the old page.
+3. Copy the contents of this folder — including `index.html`, `404.html`, `.nojekyll`, `assets/`, and the built `assets/` JavaScript/CSS files — into the repository’s publishing branch.
+4. Commit the changes and allow GitHub Pages to rebuild.
+5. Open the repository’s Pages URL and confirm the hero image, logo, project panels, navigation, and mobile layout.
 
-## Architecture & Performance
-
-- **Asynchronous Concurrent Polling**: Utilizes `std::async` and futures to query multiple broker access socket arrays in parallel, eliminating sequential network bottle-necking.
-- **High-Resolution Timing**: Measures round-trip execution times using `std::chrono::high_resolution_clock` with microsecond-level accuracy.
-- **Dynamic Failover & Routing**: Automatically sorts and locks onto the lowest-latency endpoint in real-time, ensuring zero-downtime stream continuity for MetaTrader and robotic control backends.
-
----
-
-## Building and Execution
-
-### Prerequisites
-- Modern C++17 compliant compiler (GCC 9+, Clang 10+, or MSVC 2019+)
-- CMake 3.15 or higher
-
-### Compilation Steps
-```bash
-mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-cmake --build .
-```
-
-### Running the Daemon
-```bash
-./mt_router
-```
-
----
-
-## License
-Distributed under the MIT License. See `LICENSE` for more information.
+The public site uses the Northern Edge branding and is packaged with local assets for independent static hosting.
