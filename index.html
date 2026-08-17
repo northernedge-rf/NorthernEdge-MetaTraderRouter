@@ -1,117 +1,92 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Northern Edge — Selected Work</title>
-    <style>
-      :root { --ink:#e9eef9; --fog:#0a0f18; --paper:#101722; --line:#273247; --acid:#4f6bff; --steel:#93a0b8; --card:#141c2a; }
-      * { box-sizing:border-box; }
-      html { scroll-behavior:smooth; }
-      body { margin:0; background:var(--fog); color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
-      a { color:inherit; }
-      .shell { max-width:1440px; margin:0 auto; padding:18px; }
-      .frame { min-height:calc(100vh - 36px); border:1px solid var(--line); background:var(--paper); display:flex; flex-direction:column; overflow:hidden; }
-      header { min-height:70px; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 26px; border-bottom:1px solid var(--line); }
-      .brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-size:12px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
-      .mark { width:28px; height:28px; background:var(--ink); position:relative; display:grid; place-items:center; }
-      .mark::before, .mark::after { content:""; position:absolute; background:var(--acid); }
-      .mark::before { width:16px; height:3px; }
-      .mark::after { width:3px; height:16px; }
-      nav { display:flex; gap:20px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-      nav a { text-decoration:none; padding:8px 0; border-bottom:1px solid transparent; }
-      nav a:hover, nav a:focus-visible { border-color:var(--ink); outline:none; }
-      main { flex:1; }
-      .hero { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr); min-height:550px; }
-      .hero-copy { padding:clamp(48px,9vw,138px) clamp(28px,6vw,94px) 48px; border-right:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; }
-      .eyebrow { margin:0 0 24px; color:#93a0b8; font-family:"Courier New", monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
-      h1 { max-width:850px; margin:0; font-size:clamp(46px,8.4vw,124px); line-height:.84; letter-spacing:-.085em; font-weight:800; }
-      .intro { max-width:540px; margin:42px 0 0; color:#b8c2d5; font-size:clamp(16px,1.6vw,21px); line-height:1.5; }
-      .hero-index { padding:28px; background:var(--ink); color:var(--paper); display:flex; flex-direction:column; justify-content:space-between; }
-      .hero-index p { margin:0; font-family:"Courier New", monospace; font-size:11px; letter-spacing:.08em; line-height:1.6; text-transform:uppercase; }
-      .ordinal { font-size:clamp(82px,10vw,160px); letter-spacing:-.1em; line-height:.8; color:#8fa4ff; font-weight:800; }
-      .signal { width:100%; height:105px; border-top:1px solid #5b6466; border-bottom:1px solid #5b6466; background:repeating-linear-gradient(90deg,transparent 0 18px,rgba(255,255,255,.1) 18px 19px); display:flex; align-items:flex-end; gap:5px; padding:0 0 13px; }
-      .signal i { display:block; flex:1; background:var(--acid); min-height:12px; }
-      .signal i:nth-child(2) { height:44%; } .signal i:nth-child(3) { height:73%; } .signal i:nth-child(4) { height:31%; } .signal i:nth-child(5) { height:91%; } .signal i:nth-child(6) { height:58%; } .signal i:nth-child(7) { height:24%; }
-      .summary { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-      .summary div { padding:24px 28px; min-height:118px; border-right:1px solid var(--line); }
-      .summary div:last-child { border-right:0; }
-      .summary strong { display:block; font-size:34px; letter-spacing:-.06em; line-height:1; }
-      .summary span { display:block; margin-top:12px; color:#93a0b8; font-family:"Courier New", monospace; font-size:10px; letter-spacing:.09em; text-transform:uppercase; }
-      .work { padding:clamp(44px,6vw,84px) clamp(28px,5vw,74px) 80px; }
-      .section-top { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:30px; }
-      h2 { margin:0; font-size:clamp(30px,4vw,52px); letter-spacing:-.06em; }
-      .section-top p { max-width:340px; margin:0; color:#a4afc2; font-size:14px; line-height:1.45; }
-      .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-      .project { min-height:290px; padding:25px; background:var(--card); border:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; transition:transform 180ms ease, background 180ms ease; }
-      a.project:hover, a.project:focus-visible { transform:translate(-4px,-4px); box-shadow:5px 5px 0 var(--acid); outline:none; }
-      .project.private { background:#18233a; cursor:default; }
-      .number { color:#93a0b8; font-family:"Courier New", monospace; font-size:11px; letter-spacing:.12em; }
-      .project h3 { max-width:450px; margin:34px 0 12px; font-size:clamp(27px,3.4vw,43px); line-height:.93; letter-spacing:-.065em; }
-      .project p { max-width:520px; margin:0; color:#b8c2d5; font-size:15px; line-height:1.5; }
-      .tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:26px; }
-      .tags span { padding:6px 8px; border:1px solid #3c4b68; color:#b8c2d5; font-family:"Courier New", monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; }
-      .project.private .tags span { border-color:#4f6bff; }
-      footer { display:flex; justify-content:space-between; gap:24px; padding:23px 27px; border-top:1px solid var(--line); background:#0b1019; color:var(--ink); font-family:"Courier New", monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
-      footer a { color:#8fa4ff; text-decoration:none; }
-      @media (max-width:760px) { .shell { padding:0; } .frame { min-height:100vh; border:0; } header { padding:0 18px; min-height:62px; } nav { display:none; } .hero { grid-template-columns:1fr; } .hero-copy { min-height:490px; border-right:0; } .hero-index { min-height:260px; } .summary { grid-template-columns:1fr; } .summary div { min-height:90px; border-right:0; border-bottom:1px solid var(--line); } .summary div:last-child { border-bottom:0; } .section-top { align-items:start; flex-direction:column; } .grid { grid-template-columns:1fr; } footer { flex-direction:column; } }
-    </style>
-  </head>
-  <body>
-    <div class="shell">
-      <div class="frame">
-        <header>
-          <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>Northern Edge</a>
-          <nav aria-label="Page sections"><a href="#work">Selected work</a><a href="https://github.com/northernedge-rf">All repositories</a></nav>
-        </header>
-        <main id="top">
-          <section class="hero">
-            <div class="hero-copy">
-              <div>
-                <p class="eyebrow">Independent systems practice / 2026</p>
-                <h1>Systems for<br>the edge cases.</h1>
-                <p class="intro">A compact portfolio across market infrastructure, safety layers, human-machine interfaces, and visual operations tooling.</p>
-              </div>
-              <p class="eyebrow">Northern Edge / selected work</p>
-            </div>
-            <aside class="hero-index" aria-label="Portfolio index">
-              <p>Portfolio index<br>01—04</p>
-              <div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="ordinal">04</div>
-              <p>Focused builds<br>for operational clarity</p>
-            </aside>
-          </section>
-          <section class="summary" aria-label="Portfolio summary">
-            <div><strong>04</strong><span>Selected systems</span></div>
-            <div><strong>03</strong><span>Public repositories</span></div>
-            <div><strong>01</strong><span>Private visual demo</span></div>
-          </section>
-          <section class="work" id="work">
-            <div class="section-top"><h2>Selected work.</h2><p>Each project concentrates on a specific operational problem, with a direct path to its public repository where available.</p></div>
-            <div class="grid">
-              <a class="project" href="https://github.com/northernedge-rf/NorthernEdge-MetaTraderRouter">
-                <span class="number">01 / market infrastructure</span>
-                <div><h3>Market Router</h3><p>Low-latency routing for concurrent market access and resilient execution paths.</p></div>
-                <div class="tags"><span>C++</span><span>Routing</span><span>Concurrency</span></div>
-              </a>
-              <a class="project" href="https://github.com/northernedge-rf/Industrial-Safety-Gateway-POC">
-                <span class="number">02 / safety layer</span>
-                <div><h3>Industrial Safety Gateway</h3><p>A simulation-focused command boundary for validating operational intent before it reaches equipment control layers.</p></div>
-                <div class="tags"><span>Python</span><span>Interlocks</span><span>Simulation</span></div>
-              </a>
-              <a class="project" href="https://github.com/northernedge-rf/Kodiak-KDKX-Recovery-Cockpit">
-                <span class="number">03 / human-machine interface</span>
-                <div><h3>Kodiak KDK-X Cockpit</h3><p>An industrial recovery interface built around telemetry, subsystem context, and operational visibility.</p></div>
-                <div class="tags"><span>Telemetry</span><span>Interface</span><span>Robotics</span></div>
-              </a>
-              <article class="project private">
-                <span class="number">04 / visual operations</span>
-                <div><h3>Signal Ledger</h3><p>A private visual demonstration of a high-density property operations workspace for portfolio review.</p></div>
-                <div class="tags"><span>Private demo</span><span>Visual review</span><span>Available on request</span></div>
-              </article>
-            </div>
-          </section>
-        </main>
-        <footer><span>Northern Edge / selected systems</span><a href="https://github.com/northernedge-rf">View all repositories</a></footer>
-      </div>
-    </div>
-  </body>
+<head>
+  <title>Northern Edge — Systems for edge cases</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --panel: #121212;
+      --panel-soft: #171615;
+      --text: #e5e5e5;
+      --muted: #8b8985;
+      --line: rgba(229,229,229,.18);
+      --line-soft: rgba(229,229,229,.1);
+      --gold: #c48f5a;
+      --gold-soft: #d5a777;
+      --red: #b45345;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "DM Mono", "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.55; }
+    a { color: inherit; }
+    .wrap { width: min(1320px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--line-soft); background: rgba(13,13,13,.9); backdrop-filter: blur(16px); }
+    .nav { min-height: 76px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+    .brand-mark { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid var(--gold); color: var(--gold); font-family: var(--serif); font-size: 16px; }
+    .nav-links { display: flex; gap: 28px; justify-content: center; }
+    .nav-links a, .nav-cta { color: var(--muted); font-size: 10px; letter-spacing: .16em; text-decoration: none; text-transform: uppercase;  }
+    .nav-links a:hover, .nav-links a:focus-visible, .nav-cta:hover, .nav-cta:focus-visible { color: var(--gold-soft); }
+    .nav-cta { justify-self: end; color: var(--gold-soft); }
+    .hero { min-height: 760px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .82fr); gap: clamp(44px, 8vw, 140px); align-items: center; padding: 100px 0 120px; }
+    .kicker, .eyebrow { color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+    .kicker { margin: 0 0 28px; color: var(--gold); }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.045em; }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(62px, 9.4vw, 142px); line-height: .91; }
+    .hero-copy p:not(.kicker):not(.eyebrow) { max-width: 520px; margin: 38px 0 0; color: #b8b5b0; font-size: 17px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 42px; }
+    .button { display: inline-flex; align-items: center; min-height: 46px; padding: 0 18px; border: 1px solid var(--gold); color: var(--gold-soft); font-size: 10px; letter-spacing: .14em; text-decoration: none; text-transform: uppercase;  }
+    .button.primary { background: var(--gold); color: #17110c; }
+    .button:hover, .button:focus-visible { background: var(--gold-soft); border-color: var(--gold-soft); color: #17110c; outline: none; }
+    .button.ghost { border-color: var(--line); color: var(--text); }
+    .button.ghost:hover, .button.ghost:focus-visible { border-color: var(--gold); color: var(--gold-soft); background: transparent; }
+    .porthole { position: relative; width: min(42vw, 540px); aspect-ratio: 1; justify-self: end; border: 1px solid var(--line); border-radius: 50%; padding: 18px; }
+    .porthole::before { content: ""; position: absolute; inset: 8%; border: 1px solid var(--line); border-radius: 50%; }
+    .porthole::after { content: ""; position: absolute; inset: 17%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(196,143,90,.5), transparent 25%), radial-gradient(circle at 65% 70%, #24201b, #0b0b0b 68%); box-shadow: inset 0 0 80px #000, 0 0 70px rgba(196,143,90,.08); }
+    .porthole-core { position: absolute; inset: 29%; z-index: 1; border: 1px solid rgba(196,143,90,.65); border-radius: 50%; background: repeating-linear-gradient(135deg, transparent 0 13px, rgba(196,143,90,.1) 14px 15px), radial-gradient(circle, #2c251e 0, #161310 70%); }
+    .porthole-label { position: absolute; right: 3%; bottom: 15%; z-index: 2; color: var(--gold-soft); font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; transform: rotate(-90deg); transform-origin: right bottom; }
+    .rule { border-top: 1px solid var(--line); }
+    .section { padding: 120px 0; }
+    .section-head { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: start; margin-bottom: 58px; }
+    .section-head h2 { max-width: 520px; margin: 0; font-size: clamp(46px, 6vw, 84px); line-height: .94; }
+    .section-head p { max-width: 480px; margin: 8px 0 0; color: #aaa7a1; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .work-card { min-height: 360px; display: flex; flex-direction: column; justify-content: space-between; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--panel); text-decoration: none;  }
+    .work-card:hover, .work-card:focus-visible { background: var(--panel-soft); border-color: rgba(196,143,90,.55); outline: none; }
+    .work-card.private { background: #171412; }
+    .card-top { display: flex; justify-content: space-between; gap: 20px; }
+    .card-number { color: var(--gold); font-family: var(--serif); font-size: 31px; line-height: 1; }
+    .card-arrow { color: var(--muted); font-size: 19px; }
+    .work-card h3 { max-width: 500px; margin: 70px 0 14px; font-size: clamp(31px, 4vw, 57px); line-height: .95; }
+    .work-card p { max-width: 470px; margin: 0; color: #a5a29d; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .tags span { padding: 5px 8px; border: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .approach { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
+    .approach h2 { margin: 0; font-size: clamp(48px, 6vw, 86px); line-height: .92; }
+    .approach-list { border-top: 1px solid var(--line); }
+    .approach-item { display: grid; grid-template-columns: 72px 1fr; gap: 22px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .approach-item strong { color: var(--gold); font-family: var(--serif); font-size: 29px; font-weight: 500; }
+    .approach-item h3 { margin: 0 0 7px; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0; }
+    .approach-item p { max-width: 620px; margin: 0; color: var(--muted); }
+    footer { padding: 28px 0 42px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    footer a { color: var(--gold-soft); text-decoration: none; }
+    @media (max-width: 820px) { .wrap { width: min(100% - 32px, 680px); } .nav { grid-template-columns: 1fr auto; } .nav-links { display: none; } .hero { min-height: auto; grid-template-columns: 1fr; padding: 82px 0 96px; } .porthole { width: min(82vw, 500px); justify-self: center; margin-top: 18px; } .section { padding: 82px 0; } .section-head, .approach { grid-template-columns: 1fr; gap: 24px; } .work-grid { grid-template-columns: 1fr; } .work-card { min-height: 310px; } footer { flex-direction: column; } }
+    
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="wrap nav"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">N</span>Northern Edge</a><nav class="nav-links" aria-label="Primary navigation"><a href="#practice">Practice</a><a href="#work">Work</a><a href="#approach">Approach</a></nav><a class="nav-cta" href="https://github.com/northernedge-rf">Discuss a project ↗</a></div></header>
+  <main id="top">
+    <section class="wrap hero" id="practice"><div class="hero-copy"><p class="kicker">Independent systems practice / 2026</p><h1>Built for the edge cases.</h1><p>A focused portfolio across market infrastructure, industrial safety, human-machine interfaces, and operational clarity.</p><div class="hero-actions"><a class="button primary" href="#work">See selected work</a><a class="button ghost" href="https://github.com/northernedge-rf">View repositories</a></div></div><div class="porthole" aria-label="Abstract industrial systems study"><div class="porthole-core"></div><span class="porthole-label">Field study / 01</span></div></section>
+    <section class="rule"><div class="wrap section"><div class="section-head"><p class="eyebrow">01 / Selected work</p><div><h2 id="work">Systems with a clear operational purpose.</h2><p>Each build is a considered response to a specific technical or human problem. Public repositories are linked directly where available.</p></div></div><div class="work-grid"><a class="work-card" href="https://github.com/northernedge-rf/NorthernEdge-MetaTraderRouter"><div class="card-top"><span class="card-number">01</span><span class="card-arrow">↗</span></div><div><h3>Market Router</h3><p>Low-latency routing for concurrent market access and resilient execution paths.</p><div class="tags"><span>C++</span><span>Routing</span><span>Concurrency</span></div></div></a><a class="work-card" href="https://github.com/northernedge-rf/Industrial-Safety-Gateway-POC"><div class="card-top"><span class="card-number">02</span><span class="card-arrow">↗</span></div><div><h3>Industrial Safety Gateway</h3><p>A simulation-focused command boundary for validating operational intent before it reaches equipment control layers.</p><div class="tags"><span>Python</span><span>Interlocks</span><span>Simulation</span></div></div></a><a class="work-card" href="https://github.com/northernedge-rf/Kodiak-KDKX-Recovery-Cockpit"><div class="card-top"><span class="card-number">03</span><span class="card-arrow">↗</span></div><div><h3>Kodiak KDK-X Cockpit</h3><p>An industrial recovery interface built around telemetry, subsystem context, and operational visibility.</p><div class="tags"><span>Telemetry</span><span>Interface</span><span>Robotics</span></div></div></a><article class="work-card private"><div class="card-top"><span class="card-number">04</span><span class="card-arrow">•</span></div><div><h3>Signal Ledger</h3><p>A private visual demonstration of a high-density property operations workspace for portfolio review.</p><div class="tags"><span>Private demo</span><span>Visual review</span><span>Available on request</span></div></div></article></div></div></section>
+    <section class="rule" id="approach"><div class="wrap section approach"><div><p class="eyebrow">02 / Approach</p><h2>Clarity before complexity.</h2></div><div class="approach-list"><div class="approach-item"><strong>01</strong><div><h3>Map the real constraint</h3><p>Start with the operating environment, not the interface. The strongest systems make the important decision easier to see.</p></div></div><div class="approach-item"><strong>02</strong><div><h3>Build the narrowest useful path</h3><p>Reduce noise, preserve context, and make the next action legible under pressure.</p></div></div><div class="approach-item"><strong>03</strong><div><h3>Leave a system that can be trusted</h3><p>Interfaces, documentation, and implementation should reinforce one another over time.</p></div></div></div></div></section>
+  </main>
+  <footer><div class="wrap" style="display:flex;justify-content:space-between;gap:24px;width:100%;"><span>Northern Edge / systems practice</span><a href="https://github.com/northernedge-rf">GitHub ↗</a></div></footer>
+</body>
 </html>
